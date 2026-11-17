@@ -1,0 +1,9 @@
+node_modules
+dist
+*.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+
+# Document de l'ECF (projet d'origine), à ne pas publier
+*.doc
