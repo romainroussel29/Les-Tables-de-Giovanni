@@ -1,22 +1,14 @@
 import { Link } from "react-router-dom";
 import { HOURS, SITE } from "../data/site";
-import Logo from "./Logo";
 
 export default function Footer() {
   return (
     <footer className="footer">
-      {/* Photo d'olivier pleine largeur : une respiration avant le pied de page */}
-      <img className="footer__photo" src="/images/branches-olivier.jpg" alt="" loading="lazy" />
+      <p className="footer__wordmark" aria-hidden="true">
+        Giovanni
+      </p>
 
       <div className="footer__grid">
-        <div className="footer__brand">
-          <Logo />
-          <p>
-            Traiteur italien à Arles depuis {SITE.founded}. La cuisine de famille des Pouilles, livrée et servie chez
-            vous.
-          </p>
-        </div>
-
         <div>
           <h2 className="footer__title">Nous joindre</h2>
           <ul className="footer__list">
@@ -41,7 +33,7 @@ export default function Footer() {
         <div>
           <h2 className="footer__title">Le site</h2>
           <ul className="footer__list">
-            <li><Link to="/menus">Nos menus</Link></li>
+            <li><Link to="/menus">Menus</Link></li>
             <li><Link to="/contact">Contact et devis</Link></li>
             <li><Link to="/#avis">Avis</Link></li>
             <li><Link to="/mentions-legales">Mentions légales</Link></li>
@@ -51,7 +43,8 @@ export default function Footer() {
 
       <div className="footer__bottom">
         <span>© {new Date().getFullYear()} {SITE.name}, {SITE.city}</span>
-        <span>Fait avec amore à Arles</span>
+        <span className="credit">Fait avec amore à Arles</span>
+        <span className="legal">* Photographies : Unsplash</span>
       </div>
     </footer>
   );

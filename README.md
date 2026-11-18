@@ -43,22 +43,22 @@ Site vitrine de **Les Tables de Giovanni**, traiteur à **Arles** : cuisine de f
 
 Les menus se modifient dans [src/data/menus.ts](src/data/menus.ts), les coordonnées et horaires dans [src/data/site.ts](src/data/site.ts).
 
-## 🎨 Charte graphique « Épicerie fine »
+## 🎨 Charte graphique « Nuit »
 
-Un comptoir méditerranéen ensoleillé : fond lin, encre olive, bandes moutarde et vert marché pleine largeur, photos aux coins arrondis et aucune ombre.
+L'assiette comme une pièce de musée : fond brun presque noir, texte crème en capitales, beaucoup d'espace vide, filets en pointillés et aucune ombre.
 
 | Rôle | Couleur |
 |---|---|
-| Encre olive (texte et filets) | `#3C422E` |
-| Lin (fond de page) | `#FFF4EC` |
-| Pêche (sections calmes, fiches) | `#F6E6D9` |
-| Soleil moutarde (bandes éditoriales) | `#FBD535` |
-| Vert marché (bande des occasions) | `#9EEF80` |
-| Vert huile (bouton principal uniquement) | `#D1E030` |
+| Ombre de noyer (fond) | `#100904` |
+| Crème chaude (texte, contours) | `#FFEDD7` |
+| Brun écorce (seul bouton plein, fiche de réservation) | `#382416` |
+| Liège (filets en pointillés) | `#40372E` |
+| Bois flotté (séparations secondaires) | `#6C5F51` |
+| Braise (crédits et signatures uniquement) | `#DC5000` |
 
-Typographies : **Instrument Serif** (titres, Garamond étroit), **IBM Plex Serif** (texte, boutons, menus) et **Inter** (petits badges en capitales).
+Typographie : **Inter** seule, en capitales graisse 500 pour les titres, le menu, les libellés et les boutons. Le texte descriptif est la seule voix en minuscules (graisse 400, jusqu'à 29 px).
 
-Formes : photos arrondies à 20 px, boutons et champs à 10 px, pastilles entièrement arrondies. Une seule couleur d'accent par section.
+Effets : grand nom qui monte ligne par ligne, assiettes qui flottent dans le noir et tournent au défilement, photo qui suit le curseur sur la carte, révélations au défilement. Tout est coupé si l'utilisateur demande moins d'animations.
 
 Toutes les couleurs sont des variables CSS en tête de [src/styles/global.css](src/styles/global.css).
 

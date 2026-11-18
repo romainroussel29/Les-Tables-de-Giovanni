@@ -2,14 +2,14 @@ import type { ReactNode } from "react";
 
 interface PageHeroProps {
   title: string;
-  /** Photo pleine largeur facultative ; sans photo, l'en-tête est une bande moutarde */
+  /** Photo de fond facultative, très assombrie */
   image?: string;
   children?: ReactNode;
 }
 
 export default function PageHero({ title, image, children }: PageHeroProps) {
   return (
-    <section className={`page-hero${image ? " page-hero--photo" : ""}`}>
+    <section className="page-hero">
       {image && (
         <>
           <img className="page-hero__bg" src={image} alt="" />

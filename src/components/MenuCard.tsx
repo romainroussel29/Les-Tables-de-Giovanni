@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import type { Menu } from "../types";
 import { euro } from "../utils";
 
-/** Carte façon fiche recette : photo arrondie, légende dessous, lien fléché */
 export default function MenuCard({ menu }: { menu: Menu }) {
   return (
     <article className="menu-card">
@@ -17,10 +16,8 @@ export default function MenuCard({ menu }: { menu: Menu }) {
         <h3 className="menu-card__title">{menu.name}</h3>
         <p className="menu-card__tagline">{menu.tagline}</p>
         <p className="menu-card__meta">
-          <span>{euro(menu.pricePerPerson)} par personne</span>
-          <span className="arrow-link">
-            Voir le menu <span className="arrow">→</span>
-          </span>
+          <span>{euro(menu.pricePerPerson)} / pers.</span>
+          <span className="menu-card__more">Voir le menu</span>
         </p>
       </Link>
     </article>
