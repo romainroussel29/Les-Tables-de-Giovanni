@@ -1,0 +1,233 @@
+import type { Category, Diet, Menu, Testimonial } from "../types";
+
+export const MENUS: Menu[] = [
+  {
+    slug: "trattoria-della-nonna",
+    name: "Trattoria della Nonna",
+    tagline: "Les recettes de famille de Giovanni",
+    description:
+      "Le menu qui a tout commencé : des antipasti à partager, des pâtes fraîches roulées à la main et un tiramisù fidèle à la recette de la nonna. Une table généreuse et chaleureuse, comme un dimanche midi dans les Pouilles.",
+    category: "Italien",
+    diet: "Classique",
+    pricePerPerson: 38,
+    minGuests: 10,
+    orderDelay: 5,
+    image: "/images/menus/trattoria-della-nonna.jpg",
+    imageAlt: "Lasagnes gratinées maison, tomate cerise et basilic",
+    courses: {
+      entrees: ["Burrata des Pouilles, tomates anciennes et basilic", "Vitello tonnato, câpres de Pantelleria"],
+      plats: ["Lasagnes al ragù mijoté sept heures", "Orecchiette, saucisse au fenouil et brocoli"],
+      desserts: ["Tiramisù de la nonna", "Panna cotta vanille et coulis de fruits rouges"],
+    },
+    allergens: ["Gluten", "Lait", "Œufs", "Poisson"],
+    featured: true,
+  },
+  {
+    slug: "table-provencale",
+    name: "Table provençale",
+    tagline: "La Provence à l'honneur",
+    description:
+      "Un hommage à notre ville d'adoption : produits du marché d'Arles, taureau de Camargue et douceurs provençales. Un menu de terroir, élégant et sans détour.",
+    category: "Terroir",
+    diet: "Classique",
+    pricePerPerson: 42,
+    minGuests: 10,
+    orderDelay: 7,
+    image: "/images/menus/table-provencale.jpg",
+    imageAlt: "Magret de canard rosé, légumes et jus corsé",
+    courses: {
+      entrees: ["Tartare de taureau de Camargue au couteau", "Anchoïade et légumes croquants du marché"],
+      plats: ["Gardianne de taureau, riz de Camargue", "Magret de canard, tian de légumes provençaux"],
+      desserts: ["Navettes à la fleur d'oranger et crème anglaise", "Tarte fine aux abricots et miel de lavande"],
+    },
+    allergens: ["Gluten", "Lait", "Œufs", "Poisson", "Sulfites"],
+    featured: true,
+  },
+  {
+    slug: "jardin-vegetal",
+    name: "Jardin végétal",
+    tagline: "100 % végétal, 100 % gourmand",
+    description:
+      "Des légumes de maraîchers girondins, des légumineuses et des céréales anciennes travaillés avec les saveurs de la Méditerranée. Un menu entièrement vegan qui ravit aussi les plus carnivores.",
+    category: "Buffet",
+    diet: "Vegan",
+    pricePerPerson: 31,
+    minGuests: 8,
+    orderDelay: 5,
+    image: "/images/menus/jardin-vegetal.jpg",
+    imageAlt: "Bowl végétal coloré aux pois chiches et légumes frais",
+    courses: {
+      entrees: ["Houmous de betterave et crudités croquantes", "Caponata sicilienne aux aubergines"],
+      plats: ["Risotto d'épeautre aux légumes verts", "Curry de pois chiches au lait de coco"],
+      desserts: ["Salade d'agrumes à la menthe", "Crumble pomme-rhubarbe à l'avoine"],
+    },
+    allergens: ["Sésame", "Gluten", "Céleri"],
+    featured: true,
+  },
+  {
+    slug: "buffet-riviera",
+    name: "Buffet Riviera",
+    tagline: "L'apéritif à l'italienne qui se prolonge",
+    description:
+      "Un grand buffet végétarien de spécialités ligures et toscanes, à piocher librement : focaccia tiède, légumes grillés, fromages affinés. Idéal pour les tablées décontractées.",
+    category: "Buffet",
+    diet: "Végétarien",
+    pricePerPerson: 34,
+    minGuests: 15,
+    orderDelay: 7,
+    image: "/images/menus/buffet-riviera.jpg",
+    imageAlt: "Focaccia dorée au romarin tout juste sortie du four",
+    courses: {
+      entrees: ["Focaccia au romarin et fleur de sel", "Tarte fine tomate, chèvre et pesto"],
+      plats: ["Parmigiana di melanzane", "Gnocchi gratinés au gorgonzola et noix"],
+      desserts: ["Cannoli à la ricotta et pistache", "Assortiment de biscotti maison"],
+    },
+    allergens: ["Gluten", "Lait", "Œufs", "Fruits à coque"],
+  },
+  {
+    slug: "cocktail-dinatoire",
+    name: "Cocktail dînatoire",
+    tagline: "18 pièces salées et sucrées par invité",
+    description:
+      "Des bouchées raffinées servies sur plateaux pour vos soirées debout : verrines, mini-brochettes, arancini et mignardises. Un format convivial qui laisse toute sa place aux échanges.",
+    category: "Cocktail",
+    diet: "Classique",
+    pricePerPerson: 29,
+    minGuests: 20,
+    orderDelay: 7,
+    image: "/images/menus/cocktail-dinatoire.jpg",
+    imageAlt: "Plateau de canapés et bouchées apéritives",
+    courses: {
+      entrees: ["Arancini au safran et mozzarella", "Gressins enroulés de jambon de Parme", "Verrines de petits pois et ricotta"],
+      plats: ["Mini-brochettes de poulet au citron confit", "Bouchées de saumon gravlax et aneth"],
+      desserts: ["Mini-tiramisù en verrine", "Macarons et tartelettes aux fruits"],
+    },
+    allergens: ["Gluten", "Lait", "Œufs", "Poisson", "Fruits à coque"],
+  },
+  {
+    slug: "escale-mediterraneenne",
+    name: "Escale méditerranéenne",
+    tagline: "La mer, de la Camargue à la Sicile",
+    description:
+      "Huîtres de Méditerranée, poissons de la criée du Grau-du-Roi et crustacés : un menu iodé entièrement sans gluten, pensé pour les beaux jours et les déjeuners au bord de l'eau.",
+    category: "Réception",
+    diet: "Sans gluten",
+    pricePerPerson: 48,
+    minGuests: 10,
+    orderDelay: 7,
+    image: "/images/menus/escale-mediterraneenne.jpg",
+    imageAlt: "Huîtres sur lit de glace et quartiers de citron",
+    courses: {
+      entrees: ["Huîtres de Bouzigues, mignonnette", "Carpaccio de dorade aux agrumes"],
+      plats: ["Dos de cabillaud, risotto au citron", "Gambas grillées, polenta crémeuse"],
+      desserts: ["Granita citron-basilic", "Panna cotta à la fleur d'oranger"],
+    },
+    allergens: ["Poisson", "Crustacés", "Mollusques", "Lait"],
+  },
+  {
+    slug: "dejeuner-d-affaires",
+    name: "Déjeuner d'affaires",
+    tagline: "Plateaux-repas livrés au bureau",
+    description:
+      "Des plateaux individuels soignés, livrés à l'heure dans vos locaux : une entrée, un plat, un dessert et du pain artisanal. La solution idéale pour vos réunions et séminaires.",
+    category: "Entreprise",
+    diet: "Classique",
+    pricePerPerson: 24,
+    minGuests: 6,
+    orderDelay: 2,
+    image: "/images/menus/dejeuner-d-affaires.jpg",
+    imageAlt: "Plateaux-repas individuels avec salade, œufs et légumes",
+    courses: {
+      entrees: ["Salade de lentilles, féta et herbes fraîches", "Bresaola, roquette et copeaux de parmesan"],
+      plats: ["Poulet mariné aux herbes, légumes rôtis", "Penne au pesto, tomates séchées et pignons"],
+      desserts: ["Fondant au chocolat", "Salade de fruits frais"],
+    },
+    allergens: ["Gluten", "Lait", "Œufs", "Fruits à coque"],
+  },
+  {
+    slug: "brunch-de-giovanni",
+    name: "Brunch de Giovanni",
+    tagline: "Sucré, salé, et tout le temps du monde",
+    description:
+      "Viennoiseries maison, frittata, focaccia garnie et fruits frais : un brunch généreux livré prêt à servir pour vos week-ends en famille ou entre amis.",
+    category: "Brunch",
+    diet: "Végétarien",
+    pricePerPerson: 27,
+    minGuests: 8,
+    orderDelay: 3,
+    image: "/images/menus/brunch-de-giovanni.jpg",
+    imageAlt: "Table de brunch avec pancakes et boissons fraîches",
+    courses: {
+      entrees: ["Viennoiseries maison et confitures", "Yaourt, granola et fruits rouges"],
+      plats: ["Frittata aux courgettes et à la menthe", "Focaccia garnie, ricotta et légumes grillés"],
+      desserts: ["Pancakes et sirop d'érable", "Cake au citron et pavot"],
+    },
+    allergens: ["Gluten", "Lait", "Œufs"],
+  },
+  {
+    slug: "grande-reception",
+    name: "Grande réception",
+    tagline: "Service à l'assiette pour vos grands événements",
+    description:
+      "Notre menu signature pour les mariages, anniversaires et soirées de gala : un repas gastronomique servi à l'assiette par notre équipe, du dressage au dessert.",
+    category: "Réception",
+    diet: "Classique",
+    pricePerPerson: 62,
+    minGuests: 30,
+    orderDelay: 21,
+    image: "/images/menus/grande-reception.jpg",
+    imageAlt: "Grande table de réception dressée avec verres et bougies",
+    courses: {
+      entrees: ["Foie gras mi-cuit, chutney de figues", "Saint-Jacques snackées, crème de topinambour"],
+      plats: ["Filet de bœuf, jus au vin rouge et gratin dauphinois", "Bar de ligne, beurre blanc et légumes glacés"],
+      desserts: ["Pièce montée ou entremets au choix", "Assortiment de mignardises"],
+    },
+    allergens: ["Gluten", "Lait", "Œufs", "Mollusques", "Poisson", "Sulfites"],
+  },
+  {
+    slug: "pique-nique-chic",
+    name: "Pique-nique chic",
+    tagline: "Paniers gourmands pour vos sorties",
+    description:
+      "Des paniers prêts à emporter pour un déjeuner dans les Alpilles ou au bord du Rhône : focaccias garnies, salades fraîches et douceurs, le tout dans des contenants réutilisables.",
+    category: "Terroir",
+    diet: "Classique",
+    pricePerPerson: 22,
+    minGuests: 4,
+    orderDelay: 2,
+    image: "/images/menus/pique-nique-chic.jpg",
+    imageAlt: "Panier en osier et planche de fromages pour un pique-nique",
+    courses: {
+      entrees: ["Salade de pâtes, tomates cerises et olives", "Taboulé aux herbes et citron"],
+      plats: ["Focaccia jambon de Parme et tomme de brebis", "Focaccia mozzarella, tomate et basilic"],
+      desserts: ["Cookies au chocolat noir", "Fruits de saison"],
+    },
+    allergens: ["Gluten", "Lait", "Œufs"],
+  },
+];
+
+export const CATEGORIES: Category[] = ["Italien", "Terroir", "Buffet", "Cocktail", "Entreprise", "Brunch", "Réception"];
+export const DIETS: Diet[] = ["Classique", "Végétarien", "Vegan", "Sans gluten"];
+
+export const getMenu = (slug: string | undefined) => MENUS.find((m) => m.slug === slug);
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    name: "Claire M.",
+    event: "mariage de 120 invités",
+    rating: 5,
+    text: "Giovanni et son équipe ont rendu notre mariage inoubliable. Nos invités parlent encore du tiramisù !",
+  },
+  {
+    name: "Antoine L.",
+    event: "séminaire d'entreprise",
+    rating: 5,
+    text: "Plateaux livrés à l'heure, présentation impeccable et portions généreuses. Nous recommandons sans hésiter.",
+  },
+  {
+    name: "Sarah B.",
+    event: "anniversaire de 40 invités",
+    rating: 5,
+    text: "Un cocktail dînatoire raffiné et une équipe aux petits soins. Tout était parfait, du premier appel au rangement.",
+  },
+];
