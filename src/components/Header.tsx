@@ -18,7 +18,7 @@ export default function Header() {
     setOpen(false);
   }, [pathname, hash]);
 
-  // Transparent sur la photo, voile sombre dès qu'on défile
+  // Barre flottante, plus opaque dès qu'on défile
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
@@ -47,7 +47,7 @@ export default function Header() {
         <Link to="/#avis" className={`nav__link${hash === "#avis" ? " active" : ""}`}>
           Avis
         </Link>
-        <a href={SITE.phoneHref} className="btn btn--ghost nav__phone">
+        <a href={SITE.phoneHref} className="btn btn--primary nav__phone">
           {SITE.phone}
         </a>
       </nav>

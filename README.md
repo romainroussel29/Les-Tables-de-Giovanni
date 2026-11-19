@@ -43,20 +43,26 @@ Site vitrine de **Les Tables de Giovanni**, traiteur à **Arles** : cuisine de f
 
 Les menus se modifient dans [src/data/menus.ts](src/data/menus.ts), les coordonnées et horaires dans [src/data/site.ts](src/data/site.ts).
 
-## 🎨 Charte graphique « Nuit »
+## 🎨 Charte graphique « Tavolata »
 
-L'assiette comme une pièce de musée : fond brun presque noir, texte crème en capitales, beaucoup d'espace vide, filets en pointillés et aucune ombre.
+La grande tablée des Pouilles : un blanc chaux lumineux, le bleu cobalt des céramiques de Grottaglie et un noir d'encre. Titres étroits et très gras, coins arrondis, barre de navigation flottante et translucide.
 
 | Rôle | Couleur |
 |---|---|
-| Ombre de noyer (fond) | `#100904` |
-| Crème chaude (texte, contours) | `#FFEDD7` |
-| Brun écorce (seul bouton plein, fiche de réservation) | `#382416` |
-| Liège (filets en pointillés) | `#40372E` |
-| Bois flotté (séparations secondaires) | `#6C5F51` |
-| Braise (crédits et signatures uniquement) | `#DC5000` |
+| Chaux (fond) | `#EDEFEA` |
+| Papier (surfaces claires) | `#F8F9F6` |
+| Encre (texte, pied de page) | `#15171C` |
+| Cobalt (boutons, carte, appel final) | `#2340C8` |
+| Cobalt profond (survol) | `#172F9E` |
 
-Typographie : **Inter** seule, en capitales graisse 500 pour les titres, le menu, les libellés et les boutons. Le texte descriptif est la seule voix en minuscules (graisse 400, jusqu'à 29 px).
+Typographie : **Bricolage Grotesque** (police variable), en version étroite et grasse pour les titres, normale pour le texte. Tout est en minuscules.
+
+Effets (tous désactivés si le visiteur préfère réduire les animations) :
+
+- la photo de l'accueil s'ouvre jusqu'au plein écran au défilement, le nom passe de l'encre au blanc ;
+- le récit de Giovanni se « remplit » mot à mot pendant la lecture ;
+- la carte défile à l'horizontale, comme le long d'une table (glisser au doigt sur mobile) ;
+- parallaxe douce des photos, boutons principaux « aimantés » par la souris.
 
 Effets : grand nom qui monte ligne par ligne, assiettes qui flottent dans le noir et tournent au défilement, photo qui suit le curseur sur la carte, révélations au défilement. Tout est coupé si l'utilisateur demande moins d'animations.
 

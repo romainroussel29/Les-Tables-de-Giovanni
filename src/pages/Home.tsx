@@ -1,117 +1,156 @@
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { MENUS, TESTIMONIALS } from "../data/menus";
 import { SITE } from "../data/site";
-import MenuList from "../components/MenuList";
+import { euro } from "../utils";
 
 const WORDMARK = ["Les Tables", "de Giovanni"];
 
-/** Sections « révélation » : titre à gauche, assiette au centre, texte à droite */
-const REVEALS = [
+const STORY =
+  "Giovanni a grandi à Bari, dans une famille où l'on cuisinait pour vingt. Arrivé à Arles en 2012 avec les carnets de sa grand-mère, il cuisine pour vos tables comme pour la sienne : pâtes roulées le matin, focaccia sortie du four, sauces qui mijotent depuis l'aube.";
+
+const STEPS = [
   {
-    title: "Pas juste un traiteur.",
-    image: "/images/cuisine-giovanni.jpg",
-    alt: "Le chef présente un risotto aux crevettes",
-    text: "Giovanni a grandi à Bari, dans une famille où l'on cuisinait pour vingt. Arrivé à Arles en 2012 avec les carnets de sa grand-mère, il cuisine pour vos tables comme pour la sienne.",
+    title: "Vous appelez",
+    text: "On parle de la date, du lieu, du nombre d'invités et de vos envies.",
+    image: "/images/hero-table-italienne.jpg",
   },
   {
-    title: "Tout est fait à la main.",
+    title: "On compose",
+    text: "Sous 48 h, un devis ajusté à votre budget, aux allergies et aux régimes.",
     image: "/images/menus/buffet-riviera.jpg",
-    alt: "Focaccia dorée au romarin",
-    text: "Pâtes roulées le matin, focaccia sortie du four, sauces qui mijotent depuis l'aube. Rien n'arrive tout prêt dans notre atelier, à deux pas des arènes.",
   },
   {
-    title: "Livré, dressé, servi.",
-    image: "/images/menus/cocktail-dinatoire.jpg",
-    alt: "Plateau de canapés pour un cocktail",
-    text: "On livre à Arles, en Camargue et dans les Alpilles, on dresse la table et, selon la formule, on reste pour le service. Vous profitez de vos invités.",
+    title: "On sert",
+    text: "Le jour J, on livre à Arles, en Camargue ou dans les Alpilles, on dresse et, selon la formule, on assure le service.",
+    image: "/images/hero-traiteur.jpg",
   },
 ];
 
-const STEPS = [
-  { title: "Vous appelez", text: "On parle de la date, du lieu, du nombre d'invités et de vos envies." },
-  { title: "On compose", text: "Sous 48 h, un devis ajusté à votre budget, aux allergies et aux régimes." },
-  { title: "On sert", text: "Le jour J, on livre, on dresse et, selon la formule, on assure le service." },
-];
+/** Paragraphe qui se « remplit » mot à mot pendant la lecture */
+function FillText({ text }: { text: string }) {
+  const words = text.split(" ");
+  return (
+    <p className="fill" data-scroll="read" style={{ "--n": words.length } as CSSProperties}>
+      {words.map((w, i) => (
+        <span key={i} className="fill__w" style={{ "--i": i } as CSSProperties}>
+          {w}{" "}
+        </span>
+      ))}
+    </p>
+  );
+}
 
 export default function Home() {
   return (
     <>
-      {/* ---------- Hero : photo vue du dessus, nom en très grand ---------- */}
-      <section className="hero">
-        <img className="hero__bg" src="/images/hero-fond.jpg" alt="Table italienne vue du dessus : spaghetti aux palourdes, spritz et vin blanc" />
-        <div className="hero__veil" aria-hidden="true" />
-
-        <div className="hero__lockup">
-          <p className="hero__tagline">Fait à Arles, servi à votre table.</p>
-          <h1 className="hero__wordmark" aria-label="Les Tables de Giovanni">
+      {/* ---------- Hero : la photo grandit jusqu'à remplir l'écran ---------- */}
+      <section className="hero" data-scroll="sticky">
+        <div className="hero__sticky">
+          <h1 className="hero__wordmark" aria-label={SITE.name}>
             {WORDMARK.map((line, i) => (
               <span key={line} className="hero__line" aria-hidden="true">
-                <span style={{ animationDelay: `${0.3 + i * 0.15}s` }}>{line}</span>
+                <span style={{ animationDelay: `${0.15 + i * 0.12}s` }}>{line}</span>
               </span>
             ))}
           </h1>
-        </div>
 
-        <p className="hero__side" aria-hidden="true">
-          Giovanni · Cucina di casa · Arles {SITE.founded}
-        </p>
+          <div className="hero__intro">
+            <p className="lead">
+              Traiteur italien à Arles. La cuisine de famille des Pouilles pour vos mariages, réceptions et repas
+              d'entreprise, de 4 à 200 invités.
+            </p>
+            <div className="hero__actions">
+              <Link to="/contact" className="btn btn--primary" data-magnetic>
+                Demander un devis
+              </Link>
+              <Link to="/menus" className="btn btn--outline">
+                Voir les menus
+              </Link>
+            </div>
+          </div>
 
-        <div className="hero__card">
-          <p className="hero__card-title">Traiteur italien, cuisine de famille des Pouilles.</p>
-          <hr className="dash" />
-          <p>Mariages, réceptions, repas d'entreprise et dîners, de 4 à 200 invités. Devis gratuit sous 48 h.</p>
-        </div>
+          <div className="hero__media">
+            <img src="/images/hero-fond.jpg" alt="Table italienne vue du dessus : spaghetti aux palourdes, spritz et vin blanc" />
+            <div className="hero__veil" aria-hidden="true" />
+          </div>
 
-        <Link to="/menus" className="hero__thumb">
-          <img src="/images/menus/trattoria-della-nonna.jpg" alt="" />
-          <span className="hero__thumb-label">
-            Voir la carte
-            <span className="hero__play" aria-hidden="true" />
-          </span>
-        </Link>
-      </section>
-
-      {/* ---------- Révélations : l'assiette flotte dans le noir ---------- */}
-      {REVEALS.map((r) => (
-        <section key={r.title} className="reveal">
-          <h2 className="reveal__title" data-reveal>
-            {r.title}
-          </h2>
-          <figure className="reveal__object">
-            <img src={r.image} alt={r.alt} loading="lazy" />
-          </figure>
-          <p className="reveal__text body-xl" data-reveal>
-            {r.text}
+          <p className="hero__outro" aria-hidden="true">
+            Fait à Arles,
+            <br />
+            servi à votre table.
           </p>
-        </section>
-      ))}
-
-      {/* ---------- La carte ---------- */}
-      <section className="section">
-        <div className="section__head" data-reveal>
-          <h2 className="heading">La carte</h2>
-          <p className="label-muted">{MENUS.length} menus, survolez pour voir l'assiette</p>
-        </div>
-        <MenuList menus={MENUS} />
-        <div className="section__foot">
-          <Link to="/menus" className="btn btn--ghost">
-            Filtrer les menus
-          </Link>
         </div>
       </section>
 
-      {/* ---------- Étapes (une vraie suite) ---------- */}
-      <section className="section">
-        <hr className="dash" />
-        <div className="steps">
-          <h2 className="heading" data-reveal>
-            Une commande en trois temps.
-          </h2>
-          <ol className="steps__list">
+      {/* ---------- Le récit ---------- */}
+      <section className="section" id="histoire">
+        <div className="container recit">
+          <figure className="recit__media parallax" data-scroll>
+            <img src="/images/cuisine-giovanni.jpg" alt="Giovanni présente un risotto aux crevettes" loading="lazy" />
+          </figure>
+          <div className="recit__body">
+            <h2 className="h2">Pas juste un traiteur.</h2>
+            <FillText text={STORY} />
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- La tavolata : les menus défilent comme le long d'une table ---------- */}
+      <section className="tavola" id="carte" data-scroll="x" aria-labelledby="tavola-title">
+        <div className="tavola__sticky">
+          <div className="container tavola__head">
+            <h2 id="tavola-title" className="display">
+              La carte
+            </h2>
+            <p className="lead">
+              {MENUS.length} menus, du plateau-repas au dîner de gala. Longez la table pour les découvrir.
+            </p>
+          </div>
+
+          <ul className="tavola__track" data-track>
+            {MENUS.map((m) => (
+              <li key={m.slug} className="tavola__item">
+                <Link to={`/menus/${m.slug}`} className="plate">
+                  <span className="plate__media">
+                    <img src={m.image} alt={m.imageAlt} loading="lazy" />
+                  </span>
+                  <span className="plate__name">{m.name}</span>
+                  <span className="plate__meta">
+                    <span>{m.category}</span>
+                    <span>{euro(m.pricePerPerson)} / pers.</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+            <li className="tavola__item tavola__end">
+              <p className="h2">Envie de comparer ?</p>
+              <Link to="/menus" className="btn btn--light" data-magnetic>
+                Filtrer les menus
+              </Link>
+            </li>
+          </ul>
+
+          <div className="container">
+            <div className="tavola__progress" aria-hidden="true" />
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- Étapes ---------- */}
+      <section className="section" id="etapes">
+        <div className="container">
+          <h2 className="h2 section__lead">Une commande en trois temps.</h2>
+          <ol className="steps">
             {STEPS.map((s, i) => (
-              <li key={s.title} className="step" data-reveal>
-                <span className="step__n">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="step__title">{s.title}</h3>
+              <li key={s.title} className="step">
+                <figure className="step__media parallax" data-scroll>
+                  <img src={s.image} alt="" loading="lazy" />
+                </figure>
+                <span className="step__n" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <h3 className="h3">{s.title}</h3>
                 <p>{s.text}</p>
               </li>
             ))}
@@ -120,36 +159,39 @@ export default function Home() {
       </section>
 
       {/* ---------- Avis (raccourci du menu : /#avis) ---------- */}
-      <section className="section" id="avis">
-        <hr className="dash" />
-        <h2 className="heading" data-reveal>
-          Ils ont passé commande.
-        </h2>
-        <div className="reviews">
-          {TESTIMONIALS.map((t) => (
-            <figure key={t.name} className="review" data-reveal>
-              <blockquote className="body-xl">{t.text}</blockquote>
-              <figcaption className="credit">
-                {t.name}, {t.event}
-              </figcaption>
-            </figure>
-          ))}
+      <section className="section section--alt" id="avis">
+        <div className="container">
+          <h2 className="h2 section__lead">Ils ont passé commande.</h2>
+          <div className="reviews">
+            {TESTIMONIALS.map((t) => (
+              <figure key={t.name} className="review">
+                <blockquote>{t.text}</blockquote>
+                <figcaption>
+                  <strong>{t.name}</strong>
+                  <span>{t.event}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ---------- Appel final : le seul bouton plein du site ---------- */}
-      <section className="final">
-        <hr className="dash" />
-        <div className="final__inner" data-reveal>
-          <h2 className="display">Un événement en vue ?</h2>
-          <p className="body-xl">Appelez Giovanni ou décrivez-nous votre projet. Le devis est gratuit et arrive sous 48 h.</p>
-          <div className="final__actions">
-            <Link to="/contact" className="btn btn--filled">
-              Demander un devis
-            </Link>
-            <a href={SITE.phoneHref} className="btn btn--ghost">
-              {SITE.phone}
-            </a>
+      {/* ---------- Appel final ---------- */}
+      <section className="section" id="devis">
+        <div className="container">
+          <div className="final">
+            <h2 className="display">Un événement en vue ?</h2>
+            <div className="final__side">
+              <p className="lead">Appelez Giovanni ou décrivez-nous votre projet. Le devis est gratuit et arrive sous 48 h.</p>
+              <div className="hero__actions">
+                <Link to="/contact" className="btn btn--light" data-magnetic>
+                  Demander un devis
+                </Link>
+                <a href={SITE.phoneHref} className="btn btn--outline">
+                  {SITE.phone}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
