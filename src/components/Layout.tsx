@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import { useScrollFx } from "../hooks/useScrollFx";
 
 export default function Layout() {
   const { pathname, hash } = useLocation();
@@ -18,8 +17,6 @@ export default function Layout() {
     }
     window.scrollTo(0, 0);
   }, [pathname, hash]);
-
-  useScrollFx(pathname);
 
   return (
     <>

@@ -43,28 +43,25 @@ Site vitrine de **Les Tables de Giovanni**, traiteur à **Arles** : cuisine de f
 
 Les menus se modifient dans [src/data/menus.ts](src/data/menus.ts), les coordonnées et horaires dans [src/data/site.ts](src/data/site.ts).
 
-## 🎨 Charte graphique « Tavolata »
+## 🎨 Charte graphique « Classique »
 
-La grande tablée des Pouilles : un blanc chaux lumineux, le bleu cobalt des céramiques de Grottaglie et un noir d'encre. Titres étroits et très gras, coins arrondis, barre de navigation flottante et translucide.
+Une maison de réception : blanc porcelaine, vert cyprès profond et filets de laiton. Mise en page calme et aérée, coins presque droits, aucune ombre.
 
 | Rôle | Couleur |
 |---|---|
-| Chaux (fond) | `#EDEFEA` |
-| Papier (surfaces claires) | `#F8F9F6` |
-| Encre (texte, pied de page) | `#15171C` |
-| Cobalt (boutons, carte, appel final) | `#2340C8` |
-| Cobalt profond (survol) | `#172F9E` |
+| Porcelaine (fond) | `#F7F6F2` |
+| Lin (sections secondaires) | `#EDEAE2` |
+| Cyprès (boutons, bandeaux sombres) | `#1F3A2E` |
+| Cyprès profond (pied de page, survol) | `#172C23` |
+| Encre (texte) | `#1B1F1C` |
+| Laiton (filets, ornements) | `#A88645` |
 
-Typographie : **Bricolage Grotesque** (police variable), en version étroite et grasse pour les titres, normale pour le texte. Tout est en minuscules.
+Typographie : **Bodoni Moda** pour les titres (Bodoni travaillait à Parme), **Instrument Sans** pour le texte.
 
 Effets (tous désactivés si le visiteur préfère réduire les animations) :
 
-- la photo de l'accueil s'ouvre jusqu'au plein écran au défilement, le nom passe de l'encre au blanc ;
-- le récit de Giovanni se « remplit » mot à mot pendant la lecture ;
-- la carte défile à l'horizontale, comme le long d'une table (glisser au doigt sur mobile) ;
-- parallaxe douce des photos, boutons principaux « aimantés » par la souris.
-
-Effets : grand nom qui monte ligne par ligne, assiettes qui flottent dans le noir et tournent au défilement, photo qui suit le curseur sur la carte, révélations au défilement. Tout est coupé si l'utilisateur demande moins d'animations.
+- ouverture de l'accueil : le nom, le filet de laiton puis le texte apparaissent en douceur ;
+- la carte de l'accueil se lit comme un menu imprimé (nom, pointillés, prix) ; la photo à côté suit le menu survolé ou sélectionné au clavier.
 
 Toutes les couleurs sont des variables CSS en tête de [src/styles/global.css](src/styles/global.css).
 

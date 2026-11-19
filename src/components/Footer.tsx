@@ -6,6 +6,11 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer__grid">
+          <div className="footer__brand">
+            <p className="footer__name">Les Tables de Giovanni</p>
+            <p>Traiteur italien à Arles depuis {SITE.founded}.</p>
+          </div>
+
           <div>
             <h2 className="footer__title">Nous joindre</h2>
             <ul className="footer__list">
@@ -38,9 +43,6 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="footer__wordmark" aria-hidden="true">
-          Giovanni
-        </p>
 
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} {SITE.name}, {SITE.city}</span>
