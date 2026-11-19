@@ -16,7 +16,7 @@ export default function PageHero({ title, image, children }: PageHeroProps) {
           {children && <div className="page-hero__text">{children}</div>}
         </div>
         {image && (
-          <figure className="page-hero__media">
+          <figure className="page-hero__media" data-reveal="image">
             <img src={image} alt="" />
           </figure>
         )}

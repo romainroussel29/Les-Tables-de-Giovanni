@@ -12,22 +12,31 @@ const LINKS = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
     setOpen(false);
   }, [pathname, hash]);
 
-  // Barre flottante, plus opaque dès qu'on défile
+  // Ombre légère dès qu'on défile ; la barre s'efface en descendant et revient en remontant
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 40);
+      if (Math.abs(y - last) > 6) {
+        setHidden(y > last && y > 400);
+        last = y;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className={`header${scrolled || open ? " header--solid" : ""}`}>
+    <header className={`header${scrolled || open ? " header--solid" : ""}${hidden && !open ? " header--hidden" : ""}`}>
       <Link to="/" className="header__brand" aria-label={`${SITE.name}, accueil`}>
         <Logo />
       </Link>

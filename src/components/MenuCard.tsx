@@ -4,7 +4,7 @@ import { euro } from "../utils";
 
 export default function MenuCard({ menu }: { menu: Menu }) {
   return (
-    <article className="menu-card">
+    <article className="menu-card" data-reveal>
       <Link to={`/menus/${menu.slug}`} className="menu-card__link">
         <div className="menu-card__media">
           <img src={menu.image} alt={menu.imageAlt} loading="lazy" />

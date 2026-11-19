@@ -45,12 +45,13 @@ Les menus se modifient dans [src/data/menus.ts](src/data/menus.ts), les coordonn
 
 ## 🎨 Charte graphique « Classique »
 
-Une maison de réception : blanc porcelaine, vert cyprès profond et filets de laiton. Mise en page calme et aérée, coins presque droits, aucune ombre.
+Une maison de réception : beige sable, vert cyprès profond et filets de laiton. Mise en page calme et aérée, coins presque droits, aucune ombre.
 
 | Rôle | Couleur |
 |---|---|
-| Porcelaine (fond) | `#F7F6F2` |
-| Lin (sections secondaires) | `#EDEAE2` |
+| Sable (fond) | `#EFE7DA` |
+| Lin (sections secondaires) | `#E5DBCB` |
+| Carte (encadrés, champs) | `#F8F3EA` |
 | Cyprès (boutons, bandeaux sombres) | `#1F3A2E` |
 | Cyprès profond (pied de page, survol) | `#172C23` |
 | Encre (texte) | `#1B1F1C` |
@@ -60,8 +61,13 @@ Typographie : **Bodoni Moda** pour les titres (Bodoni travaillait à Parme), **I
 
 Effets (tous désactivés si le visiteur préfère réduire les animations) :
 
-- ouverture de l'accueil : le nom, le filet de laiton puis le texte apparaissent en douceur ;
-- la carte de l'accueil se lit comme un menu imprimé (nom, pointillés, prix) ; la photo à côté suit le menu survolé ou sélectionné au clavier.
+- ouverture : le nom monte ligne par ligne, le filet de laiton se trace, la photo se pose en douceur ;
+- apparitions au défilement : textes qui montent, photos dévoilées comme un rideau qui se lève ;
+- parallaxe douce sur les grandes photos ;
+- bandeau de plats signatures qui défile (pause au survol) ;
+- galerie de la carte : pointillés qui se tracent entre le nom et le prix, zoom lent au survol ;
+- boutons qui se remplissent depuis la gauche, soulignement du menu qui se dessine ;
+- fondu entre les pages, barre de navigation qui s'efface en descendant et revient en remontant.
 
 Toutes les couleurs sont des variables CSS en tête de [src/styles/global.css](src/styles/global.css).
 
