@@ -1,0 +1,76 @@
+@use '../base/breakpoints' as *;
+
+.footer {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem) 2rem;
+  background: var(--cypres-profond);
+  color: var(--ivoire-doux);
+  font-size: var(--t-s);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
+  gap: 2.5rem;
+
+  @include below('xl') {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include below('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer__name {
+  margin-bottom: 0.5rem;
+  font-family: var(--serif);
+  font-size: var(--t-xl);
+  line-height: 1.2;
+  color: var(--sable);
+}
+
+.footer__title {
+  margin-bottom: 1rem;
+  font-family: var(--sans);
+  font-size: var(--t-s);
+  font-weight: 500;
+  color: var(--laiton);
+}
+
+.footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+
+  a {
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--sable);
+    }
+  }
+}
+
+.footer__address {
+  font-style: normal;
+}
+
+.footer__hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--filet-clair);
+  font-size: var(--t-xs);
+}

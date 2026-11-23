@@ -1,0 +1,40 @@
+// ==========================================================================
+// Les Tables de Giovanni — direction « Classique »
+// Une maison de réception : beige sable, vert cyprès, filets de laiton.
+// Titres en Bodoni Moda (Bodoni travaillait à Parme), texte en Instrument Sans.
+//
+// Compilé par `npm run build` vers public/assets/css/style.min.css.
+// L'ordre compte : base → mise en page → composants → pages → animations.
+// ==========================================================================
+
+// Base
+@use 'base/fonts';
+@use 'base/variables';
+@use 'base/reset';
+@use 'base/typography';
+
+// Mise en page
+@use 'layout/grid';
+@use 'layout/header';
+@use 'layout/footer';
+
+// Composants
+@use 'components/buttons';
+@use 'components/icons';
+@use 'components/forms';
+@use 'components/tags';
+@use 'components/page-hero';
+@use 'components/menu-card';
+@use 'components/marquee';
+
+// Pages
+@use 'pages/home';
+@use 'pages/about';
+@use 'pages/menus';
+@use 'pages/menu-detail';
+@use 'pages/contact';
+@use 'pages/legal';
+@use 'pages/not-found';
+
+// Animations (en dernier : elles complètent les règles ci-dessus)
+@use 'base/animations';

@@ -1,0 +1,103 @@
+# ==========================================================================
+# Les Tables de Giovanni — configuration Apache (hébergement web OVH)
+# HTTPS, adresse unique, redirections, cache, compression et sécurité.
+# ==========================================================================
+
+Options -Indexes -MultiViews
+AddDefaultCharset utf-8
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+  AddType font/woff2 .woff2
+  AddCharset utf-8 .css .js .json .webmanifest .xml .txt .svg
+</IfModule>
+
+# --------------------------------------------------------------------------
+# Redirections (301 = définitives, transmises par Google au référencement)
+# --------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. Tout en HTTPS et sans « www » : une seule adresse pour chaque page
+  #    (le certificat SSL doit être activé chez l'hébergeur, sinon la page ne s'ouvrira plus).
+  #    Le test du port 80 est la méthode recommandée par OVH : derrière ses serveurs
+  #    frontaux, %{HTTPS} n'est pas toujours renseigné et provoquerait une boucle.
+  RewriteCond %{SERVER_PORT} ^80$ [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L,NE]
+
+  # 2. « /page/index.html » ou « /index.html » → « /page/ » et « / »
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  # 3. Anciennes adresses du site (« /menus.html », « /contact.html »…) → nouvelles
+  RewriteRule ^(menus|contact|mentions-legales)\.html$ /$1/ [R=301,L,NC]
+  RewriteRule ^menus/([a-z0-9-]+)\.html$ /menus/$1/ [R=301,L,NC]
+
+  # 4. Barre finale ajoutée aux dossiers (« /menus » → « /menus/ »)
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^(.*[^/])$ /$1/ [R=301,L]
+</IfModule>
+
+# --------------------------------------------------------------------------
+# Cache navigateur
+# CSS et JS portent « ?v=empreinte » (mis à jour par npm run build) : un an sans risque.
+# --------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 week"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 1 day"
+  ExpiresByType text/plain "access plus 1 day"
+  ExpiresByType application/manifest+json "access plus 1 week"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+  ExpiresByType image/x-icon "access plus 6 months"
+  ExpiresByType image/vnd.microsoft.icon "access plus 6 months"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# --------------------------------------------------------------------------
+# Compression (pages, styles, scripts, SVG, XML)
+# --------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml
+  AddOutputFilterByType DEFLATE application/javascript text/javascript application/json
+  AddOutputFilterByType DEFLATE application/manifest+json image/svg+xml image/x-icon
+</IfModule>
+
+# --------------------------------------------------------------------------
+# Sécurité
+# --------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header unset X-Powered-By
+</IfModule>
+
+# Fichiers cachés (.htaccess, .DS_Store…) : jamais servis
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>

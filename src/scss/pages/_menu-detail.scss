@@ -1,0 +1,296 @@
+@use '../base/breakpoints' as *;
+
+// Fiche d'un menu : grande photo, carte, allergènes et estimation du prix.
+.detail-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: min(72vh, 44rem);
+  padding-block: 4rem;
+  color: var(--sable);
+  overflow: hidden;
+
+  .tag {
+    border-color: var(--ivoire-doux);
+  }
+}
+
+.detail-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.detail-hero__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(23, 44, 35, 0.1) 30%, rgba(23, 44, 35, 0.82));
+}
+
+.detail-hero__content {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+.detail-hero__title {
+  font-size: clamp(2.75rem, 1.6rem + 4.4vw, 5.25rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.detail-hero__tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--t-xl);
+  color: var(--ivoire-doux);
+}
+
+// Fil d'Ariane : Accueil › Nos menus › Menu
+.breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  font-size: var(--t-s);
+  color: var(--ivoire-doux);
+}
+
+.breadcrumb li + li::before {
+  content: '›';
+  margin-right: 0.5rem;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+
+  &:hover {
+    color: var(--sable);
+  }
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 22rem;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+
+  @include below('xl') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detail__main {
+  display: grid;
+  gap: 3rem;
+}
+
+.detail__desc {
+  max-width: 36em;
+  font-size: var(--t-l);
+  line-height: 1.6;
+}
+
+// La carte du menu, comme un carton posé sur la table
+.carte {
+  padding: clamp(2rem, 5vw, 3.5rem);
+  background: var(--carte);
+  border: 1px solid var(--filet);
+  outline: 1px solid var(--laiton);
+  outline-offset: -0.6rem;
+  text-align: center;
+}
+
+.carte__title {
+  font-size: var(--t-2xl);
+}
+
+.carte__hint {
+  margin-top: 0.5rem;
+  font-size: var(--t-s);
+  color: var(--sauge);
+}
+
+.carte__section {
+  margin-top: 2.25rem;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-family: var(--sans);
+    font-size: var(--t-s);
+    font-weight: 500;
+    color: var(--laiton-texte);
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--filet);
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  li {
+    font-family: var(--serif);
+    font-size: var(--t-l);
+    line-height: 1.4;
+  }
+}
+
+.infos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @include below('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--filet);
+
+  h3 {
+    font-size: var(--t-l);
+  }
+
+  p {
+    font-size: var(--t-s);
+    color: var(--sauge);
+  }
+}
+
+// Encadré de réservation, collant sur grand écran
+.booking {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+  background: var(--carte);
+  border: 1px solid var(--filet);
+
+  @include below('xl') {
+    position: static;
+  }
+}
+
+.booking__price {
+  font-family: var(--serif);
+  font-size: var(--t-2xl);
+  line-height: 1;
+
+  small {
+    font-family: var(--sans);
+    font-size: var(--t-s);
+    color: var(--sauge);
+  }
+}
+
+.booking__facts {
+  list-style: none;
+  margin: 0 0 0.5rem;
+  padding: 0 0 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+  font-size: var(--t-s);
+  color: var(--sauge);
+  border-bottom: 1px solid var(--filet);
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .icon {
+    color: var(--laiton-texte);
+  }
+}
+
+.booking__label {
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: 3rem 1fr 3rem;
+  border: 1px solid var(--filet);
+  border-radius: 2px;
+  background: var(--carte);
+
+  button {
+    border: 0;
+    background: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: var(--cypres);
+
+    &:hover {
+      background: var(--lin);
+    }
+  }
+
+  input {
+    min-width: 0;
+    height: 3rem;
+    border: 0;
+    border-inline: 1px solid var(--filet);
+    background: none;
+    text-align: center;
+    font-family: var(--serif);
+    font-size: var(--t-l);
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+.booking__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.5rem;
+
+  span {
+    font-size: var(--t-s);
+    color: var(--sauge);
+  }
+
+  strong {
+    font-family: var(--serif);
+    font-size: var(--t-xl);
+    font-weight: 400;
+  }
+}
+
+.booking__note {
+  margin-top: -0.5rem;
+  font-size: var(--t-xs);
+  color: var(--sauge);
+}

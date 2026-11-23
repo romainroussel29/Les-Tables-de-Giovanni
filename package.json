@@ -1,27 +1,34 @@
 {
   "name": "les-tables-de-giovanni",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "Site vitrine de Les Tables de Giovanni, traiteur italien à Arles (React, TypeScript, pré-rendu statique).",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc && vite build && vite build --ssr && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc",
+    "images": "node scripts/images.mjs",
+    "format": "prettier --write \"src/**/*.{ts,tsx,scss,json}\" \"scripts/**/*.mjs\" vite.config.ts"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router": "^7.18.6"
   },
   "devDependencies": {
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "typescript": "~5.6.3",
-    "vite": "^5.4.11"
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "prettier": "^3.10.1",
+    "sass": "^1.108.2",
+    "sharp": "^0.35.5",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.8"
   },
-  "overrides": {
-    "rollup": "npm:@rollup/wasm-node@^4.27.4"
+  "engines": {
+    "node": ">=22"
   }
 }

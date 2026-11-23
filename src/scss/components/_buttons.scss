@@ -1,0 +1,81 @@
+// Boutons : le remplissage glisse depuis la gauche au survol.
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: var(--t-s);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  background: linear-gradient(var(--fill, transparent), var(--fill, transparent)) no-repeat left / 0% 100%
+    var(--base, transparent);
+  transition:
+    background-size 0.55s var(--ease),
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+
+  &:hover {
+    background-size: 100% 100%;
+  }
+
+  &--primary {
+    --base: var(--cypres);
+    --fill: var(--cypres-profond);
+    color: var(--sable);
+  }
+
+  &--outline {
+    --fill: var(--encre);
+    border-color: var(--encre);
+    color: var(--encre);
+
+    &:hover {
+      color: var(--sable);
+    }
+  }
+
+  &--light {
+    --base: var(--sable);
+    --fill: var(--laiton);
+    color: var(--cypres);
+
+    &:hover {
+      color: var(--cypres-profond);
+    }
+  }
+
+  &--outline-light {
+    --fill: var(--sable);
+    border-color: var(--ivoire-doux);
+    color: var(--sable);
+
+    &:hover {
+      color: var(--cypres);
+    }
+  }
+
+  &--lg {
+    min-height: 3.5rem;
+    padding-inline: 2.2rem;
+  }
+
+  &--block {
+    width: 100%;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  &--center {
+    justify-content: center;
+  }
+}

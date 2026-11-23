@@ -1,0 +1,363 @@
+@use '../base/breakpoints' as *;
+
+// ---------- Ouverture ----------
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: clamp(34rem, calc(100svh - var(--header-h)), 54rem);
+  background: var(--cypres);
+  color: var(--sable);
+
+  @include below('lg') {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+}
+
+.hero__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: clamp(3rem, 7vw, 6rem) var(--gutter);
+  padding-left: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+}
+
+.hero__title {
+  font-size: var(--t-hero);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+// Chaque ligne du titre monte depuis son propre masque
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+
+  > span {
+    display: block;
+    animation: monte 1.2s calc(var(--d, 0) * 120ms) var(--ease) both;
+  }
+}
+
+.hero__rule {
+  width: 4.5rem;
+  height: 1px;
+  background: var(--laiton);
+  animation: draw 1s 0.6s var(--ease) both;
+  transform-origin: left;
+}
+
+.hero__lead {
+  max-width: 28em;
+  font-size: var(--t-l);
+  line-height: 1.55;
+  color: var(--ivoire-doux);
+  animation: rise 1s 0.6s var(--ease) both;
+}
+
+.hero__actions {
+  animation: rise 1s 0.75s var(--ease) both;
+}
+
+.hero__media {
+  position: relative;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    scale: 1.12;
+    animation: settle 2.4s var(--ease) both;
+  }
+
+  @include below('lg') {
+    order: -1;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+// ---------- Giovanni ----------
+.recit {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2.5rem, 7vw, 6.5rem);
+  align-items: center;
+
+  @include below('lg') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.recit__media {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  @include below('lg') {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+.recit__body {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 34rem;
+
+  .lead {
+    color: var(--encre);
+  }
+
+  > p:not(.lead) {
+    color: var(--sauge);
+  }
+}
+
+.facts {
+  display: grid;
+  margin: 1rem 0 0;
+  border-top: 1px solid var(--filet);
+
+  > div {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--filet);
+  }
+
+  dt {
+    font-size: var(--t-s);
+    color: var(--laiton-texte);
+  }
+
+  dd {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: var(--t-l);
+    line-height: 1.35;
+  }
+}
+
+// ---------- La carte : galerie des menus ----------
+.gallery {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 3vw, 2.5rem);
+
+  @include below('lg') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include below('xs') {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Rythme 3 + 2 : trois portraits, puis deux grandes photos en paysage
+.gallery__item {
+  grid-column: span 2;
+
+  &:nth-child(5n + 4),
+  &:nth-child(5n + 5) {
+    grid-column: span 3;
+
+    .plate__media {
+      aspect-ratio: 3 / 2;
+    }
+  }
+
+  @include below('lg') {
+    &,
+    &:nth-child(5n + 4),
+    &:nth-child(5n + 5) {
+      grid-column: span 1;
+    }
+
+    &:nth-child(5n + 4) .plate__media,
+    &:nth-child(5n + 5) .plate__media {
+      aspect-ratio: 4 / 5;
+    }
+  }
+}
+
+.plate {
+  display: grid;
+  gap: 0.4rem;
+  text-decoration: none;
+
+  &:hover {
+    .plate__media img {
+      transform: scale(1.06);
+    }
+
+    .plate__name {
+      color: var(--cypres);
+      font-style: italic;
+    }
+  }
+}
+
+.plate__media {
+  display: block;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 0.9rem;
+  overflow: hidden;
+  background: var(--lin);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease);
+  }
+}
+
+.plate__line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.plate__name {
+  font-family: var(--serif);
+  font-size: var(--t-xl);
+  line-height: 1.2;
+  transition: color 0.3s;
+
+  @include below('lg') {
+    font-size: var(--t-l);
+  }
+}
+
+.plate__leader {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted var(--laiton);
+  transform: translateY(-0.3em);
+  transform-origin: left;
+  transition: transform 0.8s var(--ease);
+}
+
+.plate__price {
+  font-family: var(--serif);
+  font-size: var(--t-l);
+  white-space: nowrap;
+
+  @include below('lg') {
+    font-size: var(--t-m);
+  }
+}
+
+.plate__desc {
+  font-size: var(--t-s);
+  color: var(--sauge);
+}
+
+.gallery__foot {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: var(--t-s);
+  color: var(--sauge);
+}
+
+// ---------- Déroulé d'une commande ----------
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 5vw, 4rem);
+
+  @include below('md') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step {
+  display: grid;
+  align-content: start;
+  gap: 0.8rem;
+  justify-items: center;
+  text-align: center;
+
+  p {
+    max-width: 22em;
+    color: var(--sauge);
+  }
+}
+
+.step__n {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--laiton);
+  border-radius: 50%;
+  font-family: var(--serif);
+  font-size: var(--t-l);
+  color: var(--laiton-texte);
+}
+
+// ---------- Avis ----------
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
+
+  @include below('lg') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.review {
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--laiton);
+
+  blockquote {
+    margin: 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: var(--t-l);
+    line-height: 1.5;
+  }
+
+  figcaption {
+    font-size: var(--t-s);
+    color: var(--ivoire-doux);
+  }
+}
+
+// ---------- Appel final ----------
+.final {
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
+  text-align: center;
+
+  .lead {
+    max-width: 30em;
+  }
+
+  .actions {
+    margin-top: 0.5rem;
+  }
+}

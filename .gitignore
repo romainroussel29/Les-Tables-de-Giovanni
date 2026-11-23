@@ -1,9 +1,16 @@
-node_modules
-dist
-*.local
+# Dépendances (réinstallées par npm install)
+node_modules/
+
+# Système et éditeurs
 .DS_Store
+Thumbs.db
+desktop.ini
 .vscode/*
 !.vscode/extensions.json
+*.local
 
 # Document de l'ECF (projet d'origine), à ne pas publier
 *.doc
+
+# Rendu serveur temporaire (supprimé après le pré-rendu)
+.prerender/

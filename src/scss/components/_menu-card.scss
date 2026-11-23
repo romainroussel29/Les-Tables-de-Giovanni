@@ -1,0 +1,106 @@
+@use '../base/breakpoints' as *;
+
+// Carte d'un menu (page « Nos menus », suggestions sur la fiche d'un menu).
+.menu-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2.5rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+
+  @include below('xl') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include below('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.menu-card,
+.menu-card__link {
+  height: 100%;
+}
+
+// Prix toujours calé en bas, même si l'accroche tient sur deux lignes
+.menu-card__link {
+  display: grid;
+  grid-template-rows: auto auto auto auto 1fr;
+  gap: 0.5rem;
+  text-decoration: none;
+
+  &:hover {
+    .menu-card__media img {
+      transform: scale(1.03);
+    }
+
+    .menu-card__title {
+      font-style: italic;
+    }
+  }
+}
+
+.menu-card__media {
+  aspect-ratio: 4 / 5;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  background: var(--lin);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.9s var(--ease);
+  }
+}
+
+.menu-card__kind {
+  display: flex;
+  gap: 0.75rem;
+  font-size: var(--t-xs);
+  color: var(--laiton-texte);
+
+  span::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    margin-right: 0.75rem;
+    border-radius: 50%;
+    background: currentColor;
+    vertical-align: middle;
+  }
+}
+
+.menu-card__title {
+  font-size: var(--t-xl);
+  line-height: 1.2;
+}
+
+.menu-card__tagline {
+  color: var(--sauge);
+}
+
+.menu-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  align-self: end;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--filet);
+  font-size: var(--t-s);
+
+  > span:first-child {
+    font-family: var(--serif);
+    font-size: var(--t-l);
+  }
+}
+
+.menu-card__more {
+  color: var(--cypres);
+  text-decoration: underline;
+  text-decoration-color: var(--laiton);
+  text-underline-offset: 0.25em;
+}

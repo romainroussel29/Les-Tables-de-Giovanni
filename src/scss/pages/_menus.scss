@@ -1,0 +1,76 @@
+@use '../base/breakpoints' as *;
+
+// Page « Nos menus » : recherche, filtres et tri.
+.filters {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+
+  @include below('xl') {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include below('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field--grow {
+  @include below('xl') {
+    grid-column: 1 / -1;
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin-top: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--filet);
+}
+
+.chip {
+  position: relative;
+  padding: 0.35rem 0;
+  border: 0;
+  background: none;
+  font-size: var(--t-s);
+  color: var(--sauge);
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--encre);
+  }
+
+  &[aria-pressed='true'] {
+    color: var(--encre);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: var(--laiton);
+    }
+  }
+}
+
+.results-count {
+  margin: 1.5rem 0 2.5rem;
+  font-size: var(--t-s);
+  color: var(--sauge);
+}
+
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
+  padding: 4rem 1rem;
+  text-align: center;
+  color: var(--sauge);
+}

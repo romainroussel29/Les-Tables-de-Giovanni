@@ -1,0 +1,48 @@
+// Champs de formulaire (recherche des menus, demande de devis).
+.field {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+
+  label {
+    line-height: 1.4;
+    font-size: var(--t-s);
+    font-weight: 500;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-height: 3.1rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--filet);
+    border-radius: 2px;
+    background: var(--carte);
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: var(--sauge);
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--cypres);
+      box-shadow: 0 0 0 1px var(--cypres);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    line-height: 1.55;
+  }
+
+  [aria-invalid='true'] {
+    border-color: var(--erreur);
+  }
+}
+
+.field__error {
+  font-size: var(--t-xs);
+  color: var(--erreur);
+}

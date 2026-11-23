@@ -1,0 +1,21 @@
+// Étiquettes : catégorie, régime, allergènes.
+.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.tag {
+  padding: 0.25rem 0.8rem;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font-size: var(--t-xs);
+
+  &--warn {
+    border-color: var(--filet);
+    background: var(--carte);
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://les-tables-de-giovanni.fr/sitemap.xml

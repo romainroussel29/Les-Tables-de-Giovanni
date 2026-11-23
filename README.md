@@ -1,140 +1,197 @@
 <p align="center">
-  <img src="public/favicon.svg" alt="Logo Les Tables de Giovanni" width="96">
+  <img src="public/assets/icons/favicon.svg" alt="Logo Les Tables de Giovanni" width="88">
 </p>
 
-# 🍝 Les Tables de Giovanni
+<h1 align="center">Les Tables de Giovanni</h1>
 
-Site vitrine de **Les Tables de Giovanni**, traiteur à **Arles** : cuisine de famille italienne et produits de Provence pour les réceptions, mariages, repas d'entreprise et événements privés.
+<p align="center">
+  Site vitrine d'un traiteur italien à Arles<br>
+  <a href="https://les-tables-de-giovanni.fr">les-tables-de-giovanni.fr</a> · 06.14.67.05.64
+</p>
 
-📞 **06.14.67.05.64** · 🌐 [les-tables-de-giovanni.fr](https://les-tables-de-giovanni.fr)
+<p align="center">
+  React 19 · TypeScript · Vite · Sass · pré-rendu statique
+</p>
 
-## 🔗 Liens utiles
+---
 
-| Ressource | Lien |
+## Sommaire
+
+- [Présentation](#présentation)
+- [Fonctionnalités](#fonctionnalités)
+- [Démarrage](#démarrage)
+- [Commandes](#commandes)
+- [Structure](#structure)
+- [Modifier le contenu](#modifier-le-contenu)
+- [Mise en ligne](#mise-en-ligne)
+- [Référencement](#référencement)
+- [Charte graphique](#charte-graphique)
+- [État du projet](#état-du-projet)
+
+## Présentation
+
+**Les Tables de Giovanni** propose une cuisine de famille italienne et des produits de Provence pour les réceptions, mariages, repas d'entreprise et événements privés, à Arles, en Camargue et dans les Alpilles.
+
+Le site est écrit en React et TypeScript, puis **pré-rendu à la compilation** : chaque page devient un fichier HTML complet, lisible par Google avant même le JavaScript. Le résultat est un site entièrement statique, hébergeable n'importe où : **seul le dossier `public/` est mis en ligne**.
+
+## Fonctionnalités
+
+- **Accueil** : présentation de la maison, galerie des menus, déroulé d'une commande, avis clients
+- **Nos menus** : 10 menus, recherche plein texte (plats, ingrédients), filtres par type, régime et nombre d'invités, tri par prix
+- **Fiche menu** : carte complète, allergènes, estimation du prix selon le nombre d'invités, suggestions
+- **À propos** : histoire, engagements, zone de livraison
+- **Contact et devis** : formulaire validé, pré-rempli depuis une fiche menu
+- **Mentions légales**, **politique de confidentialité** et page **404**
+- Responsive, navigation au clavier, animations désactivées si le visiteur préfère les réduire
+
+## Démarrage
+
+Prérequis : [Node.js](https://nodejs.org/) 22 ou plus récent.
+
+```bash
+git clone https://github.com/romainroussel29/Les-Tables-de-Giovanni.git
+cd Les-Tables-de-Giovanni
+npm install
+npm run dev
+```
+
+Le site s'ouvre sur http://localhost:5173 et se recharge à chaque modification.
+
+## Commandes
+
+| Commande | Rôle |
 |---|---|
-| Dépôt GitHub | [Les-Tables-de-Giovanni](https://github.com/romainroussel29/Les-Tables-de-Giovanni) |
-| Site en ligne | [les-tables-de-giovanni.fr](https://les-tables-de-giovanni.fr) |
+| `npm run dev` | Serveur de développement |
+| `npm run build` | Vérifie le TypeScript, compile et pré-rend toutes les pages dans `public/` |
+| `npm run preview` | Sert `public/` tel qu'il sera en ligne (http://localhost:4173) |
+| `npm run typecheck` | Vérification TypeScript seule |
+| `npm run images` | Optimise les photos de `src/img-originales/` et régénère les favicons |
+| `npm run format` | Met en forme le code avec Prettier |
 
-> Ce projet est indépendant. Il reprend l'idée de départ de mon projet d'ECF [Vite & Gourmands](https://github.com/romainroussel29/ECF-Vite-et-gourmands) (site d'un traiteur), mais tout le code a été réécrit en React, Vite et TypeScript, avec une nouvelle identité, de nouveaux menus et de nouvelles photos.
+## Structure
 
-## ✨ Fonctionnalités
+```
+.
+├── public/                    Site final : seul dossier mis en ligne
+│   ├── index.html             Pages générées par npm run build,
+│   ├── menus/                 une par adresse (/menus/, /menus/<menu>/…)
+│   ├── a-propos/
+│   ├── contact/
+│   ├── mentions-legales/
+│   ├── politique-confidentialite/
+│   ├── 404.html
+│   ├── assets/
+│   │   ├── css/               style.min.css (généré)
+│   │   ├── js/                main.min.js (généré)
+│   │   ├── img/               photos WebP en trois largeurs
+│   │   ├── fonts/             polices WOFF2 auto-hébergées
+│   │   └── icons/             icônes SVG et icônes du manifeste
+│   ├── favicon.ico
+│   ├── apple-touch-icon.png
+│   ├── site.webmanifest
+│   ├── robots.txt
+│   ├── sitemap.xml            (généré)
+│   └── .htaccess              HTTPS, redirections, cache, sécurité
+│
+├── src/                       Sources, non mises en ligne
+│   ├── scss/
+│   │   ├── base/              polices, variables, reset, typographie, animations
+│   │   ├── layout/            en-tête, pied de page, grille
+│   │   ├── components/        boutons, formulaires, cartes, icônes
+│   │   ├── pages/             styles propres à chaque page
+│   │   └── main.scss
+│   ├── js/                    application React (TypeScript)
+│   │   ├── components/        Header, Footer, MenuCard, Picture…
+│   │   ├── pages/             une page par fichier
+│   │   ├── data/              menus, avis, coordonnées, inventaire des photos
+│   │   ├── modules/           SEO, images, formatage, animations
+│   │   ├── types/
+│   │   ├── App.tsx            routes
+│   │   ├── routes.ts          titres, descriptions et données structurées
+│   │   ├── main.tsx           point d'entrée du navigateur
+│   │   └── entry-server.tsx   point d'entrée du pré-rendu
+│   └── img-originales/        photos avant compression
+│
+├── scripts/
+│   ├── prerender.mjs          écrit les pages HTML et le sitemap
+│   └── images.mjs             convertit les photos en WebP
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
 
-- **Accueil** : présentation de la maison, engagements, menus coups de cœur, déroulé d'une commande, avis clients et appel à l'action
-- **Nos menus** : 10 menus avec recherche plein texte (plats, ingrédients), filtres par type de menu, régime et nombre d'invités, tri par prix
-- **Détail d'un menu** : carte complète (entrées, plats, desserts), allergènes, conditions, estimation du prix selon le nombre d'invités et suggestions de menus proches
-- **Contact & devis** : formulaire validé côté client, pré-rempli depuis la page d'un menu, coordonnées et horaires
-- **Mentions légales** et page **404**
-- Design responsive (mobile, tablette, ordinateur), navigation au clavier et respect de `prefers-reduced-motion`
+> Les fichiers HTML, `style.min.css`, `main.min.js` et `sitemap.xml` de `public/` sont **générés** : ils sont écrasés à chaque `npm run build`. On modifie les sources dans `src/`.
 
-## 🍽️ Les menus
+## Modifier le contenu
 
-| Menu | Type | Régime | Prix / pers. | Minimum |
-|---|---|---|---|---|
-| Trattoria della Nonna | Italien | Classique | 38 € | 10 pers. |
-| Table provençale | Terroir | Classique | 42 € | 10 pers. |
-| Jardin végétal | Buffet | Vegan | 31 € | 8 pers. |
-| Buffet Riviera | Buffet | Végétarien | 34 € | 15 pers. |
-| Cocktail dînatoire | Cocktail | Classique | 29 € | 20 pers. |
-| Escale méditerranéenne | Réception | Sans gluten | 48 € | 10 pers. |
-| Déjeuner d'affaires | Entreprise | Classique | 24 € | 6 pers. |
-| Brunch de Giovanni | Brunch | Végétarien | 27 € | 8 pers. |
-| Grande réception | Réception | Classique | 62 € | 30 pers. |
-| Pique-nique chic | Terroir | Classique | 22 € | 4 pers. |
+| Pour changer… | Fichier |
+|---|---|
+| Téléphone, adresse, e-mail, horaires | [`src/js/data/site.ts`](src/js/data/site.ts) |
+| Menus (prix, plats, allergènes) et avis | [`src/js/data/menus.ts`](src/js/data/menus.ts) |
+| Titre et description Google d'une page | [`src/js/routes.ts`](src/js/routes.ts) |
+| Texte d'une page | [`src/js/pages/`](src/js/pages/) |
+| Couleurs, polices, espacements | [`src/scss/base/_variables.scss`](src/scss/base/_variables.scss) |
 
-Les menus se modifient dans [src/data/menus.ts](src/data/menus.ts), les coordonnées et horaires dans [src/data/site.ts](src/data/site.ts).
+Lancer ensuite `npm run build`.
 
-## 🎨 Charte graphique « Classique »
+**Ajouter un menu**
 
-Une maison de réception : beige sable, vert cyprès profond et filets de laiton. Mise en page calme et aérée, coins presque droits, aucune ombre.
+1. Ajouter son entrée dans `src/js/data/menus.ts` ; son `slug` donne l'adresse `/menus/<slug>/`.
+2. Déposer sa photo dans `src/img-originales/menu-<slug>.jpg`, puis lancer `npm run images`.
+3. Lancer `npm run build` : sa page, la liste des menus, la galerie de l'accueil et le sitemap sont mis à jour.
+
+Pour retirer un menu, supprimer aussi son dossier `public/menus/<slug>/`.
+
+**Ajouter une photo** : la nommer de façon descriptive en minuscules et tirets (`gardianne-taureau-camargue.jpg`), la déposer dans `src/img-originales/` et lancer `npm run images`.
+
+## Mise en ligne
+
+Le site est hébergé sur un **hébergement web OVH** (domaine et e-mails également chez OVH).
+
+**Publier une mise à jour**
+
+1. `npm run build`
+2. Se connecter en FTP (FileZilla, port 21, ou SFTP port 22) avec les identifiants de l'espace client OVH : *Web Cloud › Hébergements › FTP-SSH*.
+3. Envoyer **tout le contenu** de `public/` dans le dossier `www/` de l'hébergement, en écrasant les fichiers existants. Penser au fichier caché `.htaccess` (FileZilla : *Serveur › Forcer l'affichage des fichiers cachés*).
+
+Le `.htaccess` impose une adresse unique (HTTPS, sans `www`), redirige les anciennes adresses en 301, active la compression et le cache, ajoute les en-têtes de sécurité et sert la page `404.html`.
+
+**Configuration initiale** (une seule fois, dans l'espace client OVH)
+
+1. *Hébergements › Multisite* : rattacher `les-tables-de-giovanni.fr` et `www.les-tables-de-giovanni.fr`, dossier racine `www`.
+2. *Hébergements › Informations générales* : activer le certificat SSL gratuit (Let's Encrypt).
+3. *Noms de domaine › Serveurs DNS* : utiliser les serveurs DNS d'OVH, puis vérifier dans *Zone DNS* que les enregistrements A/AAAA pointent vers l'hébergement et que les enregistrements MX et SPF du courrier OVH sont présents.
+
+## Référencement
+
+- **Contenu complet dans le HTML** grâce au pré-rendu
+- **Une adresse propre par page** (`/menus/jardin-vegetal/`) avec `<title>`, description et URL canonique uniques
+- **Données structurées schema.org** : entreprise locale (adresse, horaires, zone desservie), fil d'Ariane, liste des menus, offre avec prix pour chaque menu
+- **Partage** : balises Open Graph et Twitter, image dédiée 1200 × 630
+- **Indexation** : `sitemap.xml`, `robots.txt`, page 404 en `noindex`
+- **Performance** : images WebP responsives avec dimensions déclarées, image principale et polices préchargées, CSS et JS minifiés et mis en cache un an (versionnés par empreinte)
+- **Confidentialité** : aucun cookie, aucun service tiers, polices hébergées sur le site
+
+## Charte graphique
+
+Beige sable, vert cyprès et filets de laiton. Titres en **Bodoni Moda**, texte en **Instrument Sans**.
 
 | Rôle | Couleur |
 |---|---|
 | Sable (fond) | `#EFE7DA` |
 | Lin (sections secondaires) | `#E5DBCB` |
 | Carte (encadrés, champs) | `#F8F3EA` |
-| Cyprès (boutons, bandeaux sombres) | `#1F3A2E` |
-| Cyprès profond (pied de page, survol) | `#172C23` |
+| Cyprès (boutons, bandeaux) | `#1F3A2E` |
+| Cyprès profond (pied de page) | `#172C23` |
 | Encre (texte) | `#1B1F1C` |
 | Laiton (filets, ornements) | `#A88645` |
 
-Typographie : **Bodoni Moda** pour les titres (Bodoni travaillait à Parme), **Instrument Sans** pour le texte.
+Photos : [Unsplash](https://unsplash.com), licence Unsplash.
 
-Effets (tous désactivés si le visiteur préfère réduire les animations) :
+## État du projet
 
-- ouverture : le nom monte ligne par ligne, le filet de laiton se trace, la photo se pose en douceur ;
-- apparitions au défilement : textes qui montent, photos dévoilées comme un rideau qui se lève ;
-- parallaxe douce sur les grandes photos ;
-- bandeau de plats signatures qui défile (pause au survol) ;
-- galerie de la carte : pointillés qui se tracent entre le nom et le prix, zoom lent au survol ;
-- boutons qui se remplissent depuis la gauche, soulignement du menu qui se dessine ;
-- fondu entre les pages, barre de navigation qui s'efface en descendant et revient en remontant.
+Le formulaire de contact valide les champs et affiche une confirmation, mais **n'envoie pas encore de message** : le site est statique, sans serveur. Prochaine étape envisagée : un script PHP d'envoi d'e-mail chez l'hébergeur, ou un service de formulaires.
 
-Toutes les couleurs sont des variables CSS en tête de [src/styles/global.css](src/styles/global.css).
+---
 
-## 📷 Photos
-
-Les photos viennent d'[Unsplash](https://unsplash.com) (licence Unsplash : usage commercial gratuit, sans attribution obligatoire). Chaque menu a sa photo dans [public/images/menus/](public/images/menus/), nommée d'après son identifiant (ex. `table-provencale.jpg`). Pour en changer, il suffit de remplacer le fichier en gardant le même nom.
-
-## 🛠️ Technologies
-
-- **React 18** + **TypeScript** (mode strict)
-- **Vite 5** pour le serveur de développement et le build
-- **React Router 6** pour la navigation
-- **CSS** natif (variables, Grid, Flexbox), sans framework
-- Hébergement **Cloudflare Workers** (fichiers statiques), nom de domaine **les-tables-de-giovanni.fr** (acheté chez OVH, DNS gérés par Cloudflare)
-
-## 🌐 Mise en ligne (Cloudflare Workers)
-
-Le site est relié au dépôt GitHub : **chaque `git push` sur `main` met le site à jour automatiquement**.
-
-Réglages dans Cloudflare : commande de build `npm run build`, commande de déploiement `npx wrangler deploy`.
-
-La configuration est dans [wrangler.jsonc](wrangler.jsonc) :
-- `assets.directory` : le dossier `dist/` produit par le build est publié tel quel
-- `not_found_handling: "single-page-application"` : les adresses comme `/menus` ou `/contact` renvoient `index.html`, et React Router affiche la bonne page
-- `name` doit rester identique au nom du Worker dans le tableau de bord Cloudflare
-
-## 📁 Structure
-
-```
-├── public/
-│   ├── favicon.svg
-│   └── images/            # photo d'accueil, cuisine et menus/ (une photo par menu)
-├── src/
-│   ├── components/        # Header, Footer, MenuCard, Logo, icônes…
-│   ├── data/              # menus, avis, coordonnées
-│   ├── pages/             # Accueil, Menus, Détail, Contact, Mentions, 404
-│   ├── styles/global.css  # thème et styles
-│   ├── types.ts
-│   ├── utils.ts
-│   ├── App.tsx            # routes
-│   └── main.tsx
-├── index.html
-├── vite.config.ts
-└── tsconfig.json
-```
-
-## 🚀 Lancer le projet
-
-**Prérequis** : [Node.js](https://nodejs.org/) 18 ou plus récent.
-
-```bash
-git clone https://github.com/romainroussel29/Les-Tables-de-Giovanni.git
-cd Les-Tables-de-Giovanni
-npm install
-npm run dev       # http://localhost:5173
-```
-
-Autres commandes :
-
-```bash
-npm run build      # vérification TypeScript + build de production dans dist/
-npm run preview    # prévisualiser le build
-npm run typecheck  # vérification TypeScript seule
-```
-
-> **Note Windows** : `package.json` force la version WebAssembly de Rollup (`overrides`), car le Contrôle intelligent des applications de Windows bloque le binaire natif. Cela ne change rien au résultat du build.
-
-## 📌 État du projet
-
-Le site est **100 % front-end** : il n'y a pas encore de back-end. Le formulaire de contact valide les champs et affiche une confirmation, mais n'envoie pas encore de message. Prochaines étapes possibles : envoi des demandes par e-mail, commande en ligne et espace client.
+<sub>Projet indépendant, inspiré de mon projet d'ECF <a href="https://github.com/romainroussel29/ECF-Vite-et-gourmands">Vite & Gourmands</a>.</sub>

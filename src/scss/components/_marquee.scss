@@ -1,0 +1,35 @@
+// Bandeau de plats signatures qui défile (pause au survol).
+.marquee {
+  overflow: hidden;
+  padding-block: 1.6rem;
+  border-block: 1px solid var(--filet);
+
+  &:hover .marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: defile 70s linear infinite;
+}
+
+.marquee__item {
+  display: flex;
+  align-items: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--t-xl);
+  white-space: nowrap;
+  color: var(--cypres);
+
+  &::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin-inline: 2.5rem;
+    background: var(--laiton);
+    transform: rotate(45deg);
+  }
+}

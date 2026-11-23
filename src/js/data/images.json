@@ -1,0 +1,62 @@
+{
+  "giovanni-risotto-crevettes": {
+    "widths": [480, 960, 1100],
+    "width": 1100,
+    "height": 1650
+  },
+  "menu-brunch-de-giovanni": {
+    "widths": [480, 960, 1200],
+    "width": 1200,
+    "height": 800
+  },
+  "menu-buffet-riviera": {
+    "widths": [480, 960, 1200],
+    "width": 1200,
+    "height": 801
+  },
+  "menu-cocktail-dinatoire": {
+    "widths": [480, 960, 1100],
+    "width": 1100,
+    "height": 1650
+  },
+  "menu-dejeuner-d-affaires": {
+    "widths": [480, 960, 1100],
+    "width": 1100,
+    "height": 1384
+  },
+  "menu-escale-mediterraneenne": {
+    "widths": [480, 960, 1100],
+    "width": 1100,
+    "height": 1650
+  },
+  "menu-grande-reception": {
+    "widths": [480, 960, 1200],
+    "width": 1200,
+    "height": 800
+  },
+  "menu-jardin-vegetal": {
+    "widths": [480, 960, 1200],
+    "width": 1200,
+    "height": 799
+  },
+  "menu-pique-nique-chic": {
+    "widths": [480, 960, 1200],
+    "width": 1200,
+    "height": 800
+  },
+  "menu-table-provencale": {
+    "widths": [480, 960, 1100],
+    "width": 1100,
+    "height": 1375
+  },
+  "menu-trattoria-della-nonna": {
+    "widths": [480, 960, 1100],
+    "width": 1100,
+    "height": 1467
+  },
+  "table-italienne-spaghetti-palourdes": {
+    "widths": [480, 960, 2400],
+    "width": 2400,
+    "height": 1500
+  }
+}
